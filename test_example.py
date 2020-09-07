@@ -2,7 +2,6 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import time
 
 
 @pytest.fixture
@@ -13,8 +12,8 @@ def driver(request):
 
 
 def test_example(driver):
-    driver.get("http://www.google.com/")
-    driver.find_element_by_name("q").send_keys("webdriver")
-    time.sleep(0.1)
-    driver.find_element_by_name("btnK").click()
-    WebDriverWait(driver, 10).until(EC.title_is("webdriver - Поиск в Google"))
+    driver.get("http://localhost/litecart/admin/")
+    driver.find_element_by_name("username").send_keys("admin")
+    driver.find_element_by_name("password").send_keys("admin")
+    driver.find_element_by_name("login").click()
+    WebDriverWait(driver, 10).until(EC.title_is("My Store"))
