@@ -80,3 +80,7 @@ def test_price(driver):
         except:
             pass
 
+
+def check_county_zones(driver, zones):
+    exec(f"""driver.find_element_by_xpath("//a[text() = '{zones}']").click()""")
+    driver.find_elements_by_css_selector('tbody>tr:not([class=header])>td>input[name*="][name]"]')
