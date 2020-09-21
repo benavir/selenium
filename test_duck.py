@@ -20,9 +20,13 @@ def test_price(driver):
     name = driver.find_elements_by_css_selector('div#box-campaigns li a div.name')[0].text
     reg_price = regular_price.text
     camp_price = campaign_price.text
-    reg_size = regular_price.size
-    camp_size = campaign_price.size
-    check_size(reg_size, camp_size)
+    # reg_size = regular_price.size
+    # camp_size = campaign_price.size
+    reg_size = regular_price.value_of_css_property("font-size")
+    camp_size = campaign_price.value_of_css_property("font-size")
+    f_r_p = reg_size.replace('px','')
+    f_c_p = camp_size.replace('px', '')
+    check_size(f_r_p, f_c_p)
 
     color_reg_price = regular_price.value_of_css_property('color')
     color_camp_price = campaign_price.value_of_css_property('color')
@@ -37,9 +41,13 @@ def test_price(driver):
     name_prod = driver.find_element_by_css_selector('div h1').text
     reg_price_prod = regular_price_prod.text
     camp_price_prod = campaign_price_prod.text
-    reg_size = regular_price_prod.size
-    camp_size = campaign_price_prod.size
-    check_size(reg_size, camp_size)
+    # reg_size = regular_price_prod.size
+    # camp_size = campaign_price_prod.size
+    reg_size = regular_price_prod.value_of_css_property("font-size")
+    camp_size = campaign_price_prod.value_of_css_property("font-size")
+    f_r_p = reg_size.replace('px','')
+    f_c_p = camp_size.replace('px', '')
+    check_size(f_r_p, f_c_p)
 
     color_reg_price_prod = regular_price_prod.value_of_css_property('color')
     color_camp_price_prod = campaign_price_prod.value_of_css_property('color')
@@ -74,12 +82,18 @@ def check_color(c_r_p, c_c_p):
         print("Color is not red")
 
 
-def check_size(reg_size, camp_size):
-    reg_size_height = reg_size['height']
-    reg_size_width = reg_size['width']
-    camp_size_height = camp_size['height']
-    camp_size_width = camp_size['width']
-    if (reg_size_height < camp_size_height) and (reg_size_width < camp_size_width):
+def check_size(f_r_p, f_c_p):
+    if f_r_p < f_c_p:
         print("Campaign price bigger than regular price")
     else:
         print("Regular price bigger than campaign price")
+
+# def check_size(reg_size, camp_size):
+#     reg_size_height = reg_size['height']
+#     reg_size_width = reg_size['width']
+#     camp_size_height = camp_size['height']
+#     camp_size_width = camp_size['width']
+#     if (reg_size_height < camp_size_height) and (reg_size_width < camp_size_width):
+#         print("Campaign price bigger than regular price")
+#     else:
+#         print("Regular price bigger than campaign price")
