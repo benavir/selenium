@@ -8,6 +8,7 @@ import random
 @pytest.fixture
 def driver(request):
     wd = webdriver.Chrome(desired_capabilities={"pageLoadStrategy": "eager"})
+    # wd = webdriver.Chrome(service_log_path="chrome_driver.log", service_args=["--verbose", "--log-path=D:\\qc1.log"])
     request.addfinalizer(wd.quit)
     return wd
 
